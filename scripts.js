@@ -39,7 +39,7 @@ function signIn(){
 
     let params = {
         "client_id" : "998811034715-95e7b036slgl0p114tnshhr4r0bb2ln3.apps.googleusercontent.com",
-        "redirect_uri" : "https://testshopwise.onrender.com/ShopWise-Projects/shopping.html",
+        "redirect_uri" : "https://testshopwise.onrender.com/shopping.html",
         "response_type" : "token",
         "scope" : "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube.readonly",
         "include_granted_scopes" : "true",
@@ -77,7 +77,7 @@ if(Object.keys(params).length > 0){
 
 //Hide the access token
 
-window.history.pushState({},document.title,"/"+ "ShopWise-Projects" + "/" + "index.html")
+// window.history.pushState({},document.title,"/"+ "ShopWise-Projects" + "/" + "index.html")
 
 let info = JSON.parse(localStorage.getItem('authInfo'))
 console.log(JSON.parse(localStorage.getItem('authInfo')))
@@ -108,7 +108,7 @@ function logout() {
 
     //Redirect User to Homepage
     .then((data) => {
-        location.href = "https://testshopwise.onrender.com/ShopWise-Projects/index.html"
+        location.href = "https://testshopwise.onrender.com/index.html"
     })
 
 }
