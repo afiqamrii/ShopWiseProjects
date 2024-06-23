@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 3002;
 // Use CORS middleware
 app.use(cors());
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname, '/')));
 
 // Set up headers for all requests
 app.use((req, res, next) => {
@@ -50,7 +50,7 @@ app.get('/search', async (req, res) => {
 
 // Fallback to serving index.html for any unknown routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Start the server
