@@ -2,12 +2,16 @@ const express = require('express');
 const request = require('request');
 const axios = require('axios');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
-const PORT = 3002 || process.env.PORT;
+const PORT = process.env.PORT || 3002;
 
 // Use CORS middleware
 app.use(cors());
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up headers for all requests
 app.use((req, res, next) => {
@@ -42,6 +46,11 @@ app.get('/search', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Error fetching data' });
     }
+});
+
+// Fallback to serving index.html for any unknown routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server
