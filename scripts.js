@@ -39,7 +39,7 @@ function signIn(){
 
     let params = {
         "client_id" : "998811034715-95e7b036slgl0p114tnshhr4r0bb2ln3.apps.googleusercontent.com",
-        "redirect_uri" : "http://127.0.0.1:5500/ShopWise-Projects/shopping.html",
+        "redirect_uri" : "https://testshopwise.onrender.com/ShopWise-Projects/shopping.html",
         "response_type" : "token",
         "scope" : "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube.readonly",
         "include_granted_scopes" : "true",
@@ -108,7 +108,7 @@ function logout() {
 
     //Redirect User to Homepage
     .then((data) => {
-        location.href = "http://127.0.0.1:5500/ShopWise-Projects/index.html"
+        location.href = "https://testshopwise.onrender.com/ShopWise-Projects/index.html"
     })
 
 }
