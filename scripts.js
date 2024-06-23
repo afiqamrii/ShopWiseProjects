@@ -77,7 +77,7 @@ if(Object.keys(params).length > 0){
 
 //Hide the access token
 
-// window.history.pushState({},document.title,"/"+ "ShopWise-Projects" + "/" + "index.html")
+window.history.pushState({},document.title,"/"+ "ShopWise-Projects" + "/" + "search")
 
 let info = JSON.parse(localStorage.getItem('authInfo'))
 console.log(JSON.parse(localStorage.getItem('authInfo')))
