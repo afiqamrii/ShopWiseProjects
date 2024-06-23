@@ -122,7 +122,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
 });
 
 function fetchGoogleShoppingData(query) {
-  const apiUrl = `http://localhost:3000/search?q=${encodeURIComponent(query)}`;
+  const apiUrl = `https://testshopwise.onrender.com/search?q=${encodeURIComponent(query)}`;
 
   fetch(apiUrl)
       .then(response => response.json())
