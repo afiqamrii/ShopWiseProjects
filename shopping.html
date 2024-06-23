@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/png" sizes="32x3" href="assets/images/RentWiseLogo.png">
+    <title>Find Deals | ShopWise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="basicStyle.css">
+    <link rel="stylesheet" href="shopping.css">
+    <style>
+      
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <img class="logo" src="assets/images/ShopWiseLogo.svg" alt="ShopWiseLogo">
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </div>
+            <ul class="nav-bar">
+                <li><a href="shopping.html">Home</a></li> 
+                <li><a href="#howWorks">How Works</a></li>
+                <li><a href="#whyUs">Why Us</a></li>
+                <li><a href="Code.html">Distance Checker</a></li>
+                <li><a href="#" onclick="logout()" id="log-out-responsive-ind">Log Out</a></li>
+            </ul>
+        </nav>
+        <div id="google_translate_element"></div>
+        <div class="log-out">
+            <ul class="log-out-btn">
+                <li><a href="#" onclick="logout()" id="log-out-responsive">Log Out</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="gambar">
+        
+        <div id="searchContainer">
+            <h1>Hi , <span id="name"></span>. What Are You Looking For ?</h1>
+            <input type="text" id="searchQuery" placeholder="Search for products...">
+            <button id="searchButton">Search</button>
+        </div>
+    </div>
+        <div id="results"></div>
+    </main>
+
+    <!-- How it Works Section -->
+    <div class="how-it-works" id="howWorks">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <img src="assets/images/search.png" alt="Search">
+                <h3>Find Deals</h3>
+                <p>Search your desired products to see best deals</p>
+            </div>
+            <div class="step">
+                <img src="assets/images/select.png" alt="Select">
+                <h3>Choose Deals</h3>
+                <p>Choose the best price that we gives to you !</p>
+            </div>
+            <div class="step">
+                <img src="assets/images/link.png" alt="Book">
+                <h3>Click Link</h3>
+                <p>Click the provided link to directly buy from e-Commerce Platform</p>
+            </div>
+            <div class="step">
+                <img src="assets/images/purchaseIcon.png" alt="Drive">
+                <h3>Purchase</h3>
+                <p>Buy with great deals and great prices . Enjoy !</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Why Us -->
+    <div class="whyUs" id="whyUs">
+        <h2>Why Choose &nbsp;<span style="color: #0a9652;">ShopWise</span></h2>
+        <div class="content-wrapper">
+            <div class="accordion-container">
+                <button class="accordion">
+                    User-Friendly 
+                    <div class="downArrow">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </div>
+                </button>
+                <div class="panel">
+                    <p>Our website is designed with the user in mind, offering a clean, intuitive, and easy-to-navigate interface. 
+                        With advanced search filters and sorting options, finding the perfect product at the best price is quick 
+                        and effortless.</p>
+                </div>
+                <button class="accordion">
+                    Wide Range of Categories
+                    <div class="downArrow">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </div>
+                </button>
+                <div class="panel">
+                    <p>ShopWise covers an extensive range of product categories, from electronics and fashion to home goods and 
+                        groceries. Whatever you're looking for, you can find it on our platform.</p>
+                </div>
+                <button class="accordion">
+                    Real-Time Updates 
+                    <div class="downArrow">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </div>
+                </button>
+                <div class="panel">
+                    <p>Our system continuously monitors prices and updates them in real-time, so you always have access to the 
+                       most current and accurate pricing information. This ensures you never miss out on flash sales, discounts, 
+                       or special promotions.
+                    </p>
+                </div>
+            </div>
+            <div class="rent-img">
+                <img src="assets/images/whyUsPicture.jpg" alt="Rent Car Picture">
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 ShopWise. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

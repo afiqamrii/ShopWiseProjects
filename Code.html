@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/png" sizes="32x3" href="assets/images/RentWiseLogo.png">
+    <title>RentWise | Distance Price Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('assets/images/map_outline_black.jpg');
+            /* Replace with your background image URL */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        nav {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            height: 100px;
+            margin-left: 20px;
+        }
+
+        nav .menu-toggle {
+            display: none;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        nav .menu-toggle i {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        nav .nav-bar {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav .nav-bar li {
+            margin: 0 20px;
+        }
+
+        nav .nav-bar a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            margin-top: 80px;
+            /* Adjust based on the height of the nav bar */
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            nav .menu-toggle {
+                display: block;
+            }
+
+            nav .nav-bar {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            nav .nav-bar li {
+                margin: 10px 0;
+            }
+
+            nav .nav-bar.show {
+                display: flex;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <img class="logo" src="assets/images/ShopWiseLogo.svg" alt="ShopWiseLogo">
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </div>
+        <ul class="nav-bar" id="nav-bar">
+            <li><a href="shopping.html">Home</a></li>
+            <li><a href="Code.html">Distance Checker</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Distance Price Checker</h1>
+        <label for="origin">Pickup Location:</label>
+        <input type="text" id="origin" placeholder="Enter pickup location">
+        <label for="destination">Delivery Location:</label>
+        <input type="text" id="destination" placeholder="Enter delivery location">
+        <button onclick="calculatePrice()">Calculate Price</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('mobile-menu').addEventListener('click', function () {
+            const navBar = document.getElementById('nav-bar');
+            navBar.classList.toggle('show');
+            this.querySelector('.fa-bars').classList.toggle('hide');
+            this.querySelector('.fa-times').classList.toggle('hide');
+        });
+
+        function calculatePrice() {
+            const origin = document.getElementById('origin').value;
+            const destination = document.getElementById('destination').value;
+            const apiKey = 'AIzaSyCaPFxyxPkdg2VT8mhxDwcxJeSIZpIyNzY'; // Replace with your API key
+            const pricePerKm = 2; // Price per kilometer in RM (Ringgit)
+
+            const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
+            const proxyUrl = `http://localhost:3002/proxy?url=${encodeURIComponent(url)}`;
+
+            fetch(proxyUrl)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API Response:', data); // Log the full response
+                    if (data.status === 'OK') {
+                        const element = data.rows[0].elements[0];
+                        const distanceText = element.distance ? element.distance.text : 'N/A';
+                        const duration = element.duration ? element.duration.text : 'N/A';
+                        const distanceValue = element.distance ? element.distance.value / 1000 : 0; // Distance in kilometers
+
+                        const price = distanceValue * pricePerKm;
+
+                        document.getElementById('result').innerHTML = `Distance: ${distanceText} </br>
+                        Duration: ${duration} </br>
+                        Price: RM${price.toFixed(2)}`;
+                    } else {
+                        document.getElementById('result').innerHTML = `Error: ${data.error_message || data.status}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = 'An error occurred';
+                });
+        }
+    </script>
+</body>
+
+</html>
