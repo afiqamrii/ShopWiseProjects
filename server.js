@@ -4,7 +4,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3002;
+const PORT = 3002 || process.env.PORT;
 
 // Use CORS middleware
 app.use(cors());
